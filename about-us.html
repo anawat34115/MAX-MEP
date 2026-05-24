@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เกี่ยวกับเรา — MAX MEP Co., Ltd.</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── INTRO GRID ── */
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .intro-image {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .intro-image img { width:100%;height:100%;object-fit:cover;display:block; }
+    .intro-image-badge {
+      position: absolute;
+      bottom: 24px; left: 24px;
+      background: var(--orange);
+      color: var(--white);
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+    }
+
+    /* ── MISSION/VISION ── */
+    .mv-section { background: var(--navy); color: var(--white); }
+    .mv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 48px;
+    }
+    .mv-card {
+      background: rgba(13,34,64,0.95);
+      padding: 48px 40px;
+    }
+    .mv-card h3 {
+      font-family: var(--font-display);
+      font-size: 13px; letter-spacing: 3px;
+      color: var(--orange); text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .mv-card h2 {
+      font-family: var(--font-heading);
+      font-size: 22px; font-weight: 700;
+      color: var(--white); margin-bottom: 16px; line-height: 1.4;
+    }
+    .mv-card p { color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.9; }
+    .mv-list { list-style: none; margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+    .mv-list li {
+      font-size: 14px; color: rgba(255,255,255,0.7);
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .mv-list li::before { content: '→'; color: var(--orange); flex-shrink: 0; margin-top: 1px; }
+
+    /* ── STATS BAR ── */
+    .stats-bar { background: var(--orange); padding: 48px 24px; }
+    .stats-bar-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 32px; text-align: center; }
+    .stat-item .stat-num { color: var(--white); }
+    .stat-item .stat-label { color: rgba(255,255,255,0.75); }
+
+    /* ── TEAM ── */
+    .team-section { background: var(--off-white); }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 1px;
+      background: var(--gray-200);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 48px;
+    }
+    .team-card {
+      background: var(--white);
+      padding: 36px 32px;
+    }
+    .team-card-icon { font-size: 32px; margin-bottom: 16px; }
+    .team-card h3 { font-family: var(--font-heading); font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .team-card p { font-size: 13px; color: var(--gray-500); line-height: 1.8; }
+    .team-detail { margin-top: 16px; }
+    .team-detail span { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--gray-700); margin-bottom: 6px; }
+    .team-detail span::before { content: '✓'; color: var(--orange); flex-shrink: 0; }
+
+    /* ── VALUES ── */
+    .values-section { background: var(--white); }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .value-card {
+      padding: 32px 28px;
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .value-card:hover { border-color: var(--orange); box-shadow: var(--shadow-md); }
+    .value-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: var(--orange);
+    }
+    .value-num {
+      font-family: var(--font-display);
+      font-size: 40px; font-weight: 700;
+      color: rgba(232,114,12,0.1);
+      position: absolute; top: 16px; right: 20px;
+      line-height: 1;
+    }
+    .value-card h3 { font-family: var(--font-heading); font-size: 18px; font-weight: 700; color: var(--navy); margin: 20px 0 10px; }
+    .value-card p { font-size: 13px; color: var(--gray-500); line-height: 1.8; }
+
+    /* ── GOALS ── */
+    .goals-section { background: var(--navy); }
+    .goals-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .goal-card {
+      padding: 32px 28px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+    .goal-card:hover { background: rgba(232,114,12,0.08); border-color: rgba(232,114,12,0.3); }
+    .goal-num { font-family: var(--font-display); font-size: 11px; letter-spacing: 3px; color: var(--orange); margin-bottom: 12px; }
+    .goal-card h3 { font-family: var(--font-heading); font-size: 17px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+    .goal-card p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.8; }
+
+    @media (max-width: 900px) {
+      .intro-grid { grid-template-columns: 1fr; }
+      .mv-grid { grid-template-columns: 1fr; }
+      .stats-bar-inner { grid-template-columns: repeat(2,1fr); }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .goals-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .values-grid { grid-template-columns: 1fr; }
+      .stats-bar-inner { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="logo-wrap">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="1" y="1" width="38" height="38" rx="4" stroke="#E8720C" stroke-width="2"/><path d="M8 30V10L20 22L32 10V30" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M20 22V30" stroke="#E8720C" stroke-width="3" stroke-linecap="round"/></svg>
+      <div class="logo-text-wrap">
+        <span class="logo-main">MAX <span>MEP</span></span>
+        <span class="logo-sub">Engineering Solutions</span>
+      </div>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">หน้าหลัก</a>
+      <a href="about-us.html" class="active">เกี่ยวกับเรา</a>
+      <a href="service.html">บริการ &amp; ผลิตภัณฑ์</a>
+      <a href="portfolio.html">ผลงาน</a>
+      <a href="contact.html" class="nav-cta">ติดต่อเรา</a>
+    </nav>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-hero-eyebrow">About Us</p>
+    <h1>เกี่ยวกับ MAX MEP</h1>
+    <p>พันธมิตรที่น่าเชื่อถือที่สุดของคุณในงานระบบวิศวกรรม M&amp;E และถังเก็บน้ำ GRP</p>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section class="section" style="background:var(--white);">
+  <div class="container">
+    <div class="intro-grid">
+      <div class="intro-image">
+        <img src="https://placehold.co/1920x1080" alt="MAX MEP Office" style="height:480px;">
+        <div class="intro-image-badge">Since 2015</div>
+      </div>
+      <div>
+        <p class="section-label">Company Overview</p>
+        <h2 class="section-title">สร้างความไว้วางใจ<br>ผ่านความสำเร็จที่โดดเด่น</h2>
+        <div class="orange-rule"></div>
+        <p style="color:var(--gray-500);font-size:14px;line-height:1.9;margin-top:16px;">
+          เราคือบริษัทรับเหมางานระบบเครื่องกลและไฟฟ้า (M&amp;E) ในประเทศไทย ที่มีความเชี่ยวชาญระดับภูมิภาค ด้านระบบถังเก็บน้ำและงานวิศวกรรม M&amp;E ครบวงจร ทีมงานที่มีประสบการณ์ของเรานำเสนอโซลูชันทางวิศวกรรมที่ใช้งานได้จริง ปลอดภัย และคุ้มค่า ซึ่งเป็นไปตามระเบียบอาคารของประเทศไทยและมาตรฐานสากล
+        </p>
+        <p style="color:var(--gray-500);font-size:14px;line-height:1.9;margin-top:14px;">
+          เรื่องราวของเราคือการมุ่งเน้นการเติบโต โดยสั่งสมความเชี่ยวชาญในการติดตั้งระบบเครื่องกลและไฟฟ้าที่แม่นยำ และระบบถังเก็บน้ำที่เชื่อถือได้ การจัดหาวิศวกรรมเครื่องกลและไฟฟ้าที่สำคัญสำหรับโครงการสนามบินมัลดีฟส์ เป็นข้อพิสูจน์ถึงความสามารถระดับนานาชาติของเรา
+        </p>
+        <blockquote style="margin-top:28px;border-left:4px solid var(--orange);padding:14px 20px;background:var(--off-white);border-radius:0 6px 6px 0;font-size:15px;color:var(--navy);font-weight:500;line-height:1.7;font-style:italic;">
+          "เราไม่ได้เป็นเพียงผู้รับเหมา แต่เราคือพันธมิตรระยะยาวของคุณ ในการสร้างความมั่นใจว่าระบบอาคารจะปลอดภัย มีประสิทธิภาพ และใช้งานได้ยาวนาน"
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-item"><div class="stat-num">50+</div><div class="stat-label">วิศวกรผู้เชี่ยวชาญ</div></div>
+    <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">ปีประสบการณ์เฉลี่ย</div></div>
+    <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">ประเทศที่ผ่านประสบการณ์</div></div>
+    <div class="stat-item"><div class="stat-num">30ปี+</div><div class="stat-label">อายุถัง GRP</div></div>
+  </div>
+</div>
+
+<!-- MISSION / VISION -->
+<section class="section mv-section">
+  <div class="container">
+    <p class="section-label" style="color:var(--orange);">Mission &amp; Vision</p>
+    <h2 class="section-title" style="color:var(--white);">พันธกิจและวิสัยทัศน์ของเรา</h2>
+    <div class="mv-grid">
+      <div class="mv-card">
+        <h3>พันธกิจ</h3>
+        <h2>นำเสนอโซลูชัน MEP ที่มีประสิทธิภาพ น่าเชื่อถือ และเป็นไปตามมาตรฐาน</h2>
+        <ul class="mv-list">
+          <li>นำเสนอระบบ MEP ที่มีประสิทธิภาพ เชื่อถือได้ และเป็นไปตามมาตรฐาน</li>
+          <li>ปฏิบัติตามกฎระเบียบด้านความปลอดภัยของประเทศไทยและแนวปฏิบัติสากลอย่างเคร่งครัด</li>
+          <li>ดำเนินโครงการให้แล้วเสร็จตรงเวลาและภายในงบประมาณ</li>
+          <li>สร้างความร่วมมือที่ยั่งยืนผ่านบริการที่เป็นเลิศ</li>
+        </ul>
+      </div>
+      <div class="mv-card">
+        <h3>วิสัยทัศน์</h3>
+        <h2>เป็นพันธมิตร MEP ที่น่าเชื่อถือที่สุดในประเทศไทย</h2>
+        <p>เป็นที่รู้จักในด้านการนำเสนอวิศวกรรมที่ยอดเยี่ยม มาตรฐานความปลอดภัยที่ไม่ประนีประนอม และการสร้างมูลค่าระยะยาวสำหรับทุกโครงการ</p>
+        <ul class="mv-list" style="margin-top:20px;">
+          <li>สร้างรากฐานที่แข็งแกร่งในประเทศไทย</li>
+          <li>บรรลุความเป็นเลิศในระดับท้องถิ่น</li>
+          <li>บรรลุการเติบโตที่ยั่งยืนในระยะยาว</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="section values-section">
+  <div class="container">
+    <p class="section-label">Core Values</p>
+    <h2 class="section-title">ค่านิยมหลักของเรา</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-num">01</div>
+        <h3>ความเชี่ยวชาญระดับภูมิภาค</h3>
+        <p>ประสบการณ์อันยาวนานในเอเชีย ตั้งแต่พม่าและมัลดีฟส์ไปจนถึงประเทศไทย ด้วยความเข้าใจในข้อกำหนดเฉพาะของแต่ละภูมิภาค</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">02</div>
+        <h3>คุณภาพที่ไม่ประนีประนอม</h3>
+        <p>สอดคล้องกับมาตรฐานข้อบังคับของไทยและสากล งานทุกชิ้นผ่านการตรวจสอบและทดสอบก่อนส่งมอบ</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">03</div>
+        <h3>ความร่วมมือที่เชื่อถือได้</h3>
+        <p>เป็นมากกว่าผู้รับเหมา แต่เป็นพันธมิตรระยะยาวสู่ความสำเร็จ ร่วมเติบโตและแก้ปัญหาร่วมกัน</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">04</div>
+        <h3>ความปลอดภัยเป็นสำคัญ</h3>
+        <p>ทีมงานทุกคนได้รับการฝึกอบรมด้านความปลอดภัยระดับสูงสุด อัตราการเกิดอุบัติเหตุเป็นศูนย์คือเป้าหมาย</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">05</div>
+        <h3>นวัตกรรมอย่างต่อเนื่อง</h3>
+        <p>มุ่งมั่นพัฒนาและเรียนรู้อย่างต่อเนื่อง นำเทคโนโลยีและวิธีการใหม่มาใช้เพื่อผลลัพธ์ที่ดีกว่า</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">06</div>
+        <h3>ความยั่งยืน</h3>
+        <p>ลดผลกระทบต่อสิ่งแวดล้อม รีไซเคิลของเสียจากโครงการ ลดการปล่อยก๊าซคาร์บอน และใช้วัสดุที่เป็นมิตร</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section team-section">
+  <div class="container">
+    <p class="section-label">Our Team</p>
+    <h2 class="section-title">ความเชี่ยวชาญด้านเทคนิคและทีมงาน</h2>
+    <p class="section-subtitle">แรงขับเคลื่อนเบื้องหลังทุกโครงการ</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-card-icon">👷</div>
+        <h3>ทีมวิศวกรของเรา</h3>
+        <p>วิศวกรและผู้เชี่ยวชาญที่มีคุณภาพสูง พร้อมนำเสนอโซลูชันที่มีคุณภาพและนวัตกรรม</p>
+        <div class="team-detail">
+          <span>วิศวกรผู้เชี่ยวชาญกว่า 50 ท่าน</span>
+          <span>ประสบการณ์เฉลี่ยมากกว่า 10 ปี</span>
+          <span>ครอบคลุมหลายสาขา: ไฟฟ้า เครื่องกล สุขาภิบาล โยธา</span>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-icon">🎓</div>
+        <h3>ความสามารถและคุณสมบัติ</h3>
+        <p>ทีมงานทุกคนผ่านการรับรองและฝึกอบรมเฉพาะทางอย่างเข้มข้น</p>
+        <div class="team-detail">
+          <span>ใบอนุญาตประกอบวิชาชีพวิศวกรรม (PE)</span>
+          <span>การฝึกอบรมเฉพาะทางด้านระบบเครื่องกลและไฟฟ้า รวมถังไฟเบอร์กลาส</span>
+          <span>มุ่งมั่นในการพัฒนาและเรียนรู้อย่างต่อเนื่อง</span>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-icon">🏆</div>
+        <h3>ผลงานที่พิสูจน์แล้ว</h3>
+        <p>ประสบการณ์ครอบคลุมตั้งแต่สนามบินนานาชาติในเอเชียไปจนถึงโครงการโครงสร้างพื้นฐานในท้องถิ่น</p>
+        <div class="team-detail">
+          <span>โครงการสนามบินนานาชาติ (เอเชีย)</span>
+          <span>โรงงานอุตสาหกรรมขนาดใหญ่ทั่วประเทศไทย</span>
+          <span>โครงการโรงแรมและรีสอร์ทระดับหรู</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOALS -->
+<section class="section goals-section">
+  <div class="container">
+    <p class="section-label" style="color:var(--orange);">Strategic Goals</p>
+    <h2 class="section-title" style="color:var(--white);">เป้าหมายเชิงกลยุทธ์ของเรา</h2>
+    <div class="goals-grid">
+      <div class="goal-card">
+        <div class="goal-num">01</div>
+        <h3>สร้างรากฐานที่แข็งแกร่งในประเทศไทย</h3>
+        <p>สร้างฐานการดำเนินงานที่แข็งแกร่งโดยใช้ประโยชน์จากประสบการณ์โครงการระดับภูมิภาคและความเชี่ยวชาญของเรา</p>
+      </div>
+      <div class="goal-card">
+        <div class="goal-num">02</div>
+        <h3>บรรลุความเป็นเลิศในระดับท้องถิ่น</h3>
+        <p>พัฒนาทีมงานท้องถิ่นที่มีทักษะสูงและกำหนดมาตรฐานกระบวนการเพื่อให้เป็นไปตามมาตรฐานวิศวกรรมและคุณภาพระดับภูมิภาค</p>
+      </div>
+      <div class="goal-card">
+        <div class="goal-num">03</div>
+        <h3>บรรลุการเติบโตที่ยั่งยืน</h3>
+        <p>ขับเคลื่อนการเติบโตของโครงการอย่างต่อเนื่องและสร้างความร่วมมือระยะยาวภายในอุตสาหกรรมก่อสร้างและระบบเครื่องกลไฟฟ้าของประเทศไทย</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--orange);padding:56px 24px;">
+  <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;">
+    <div>
+      <h2 style="font-family:var(--font-display);font-size:28px;color:var(--white);font-weight:600;">พร้อมร่วมงานกับเราแล้วหรือยัง?</h2>
+      <p style="color:rgba(255,255,255,0.75);font-size:15px;margin-top:6px;">ติดต่อเราเพื่อปรึกษาโครงการของคุณ ไม่มีค่าใช้จ่าย</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="contact.html" class="btn" style="background:var(--white);color:var(--orange);font-weight:700;">ติดต่อเรา →</a>
+      <a href="portfolio.html" class="btn btn-outline-white">ดูผลงานโครงการ</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo-wrap" style="margin-bottom:12px;display:inline-flex;">
+        <svg width="36" height="36" viewBox="0 0 40 40" fill="none"><rect x="1" y="1" width="38" height="38" rx="4" stroke="#E8720C" stroke-width="2"/><path d="M8 30V10L20 22L32 10V30" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M20 22V30" stroke="#E8720C" stroke-width="3" stroke-linecap="round"/></svg>
+        <div class="logo-text-wrap"><span class="logo-main">MAX <span>MEP</span></span><span class="logo-sub">Engineering Solutions</span></div>
+      </a>
+      <p>บริษัท แม็ก เอ็มอีพี จำกัด ผู้เชี่ยวชาญด้านงานระบบวิศวกรรม M&E ครบวงจร และถังเก็บน้ำ GRP คุณภาพสูง</p>
+    </div>
+    <div class="footer-col"><h4>บริการ</h4><a href="service.html">ระบบดับเพลิง</a><a href="service.html">ระบบไฟฟ้า</a><a href="service.html">ระบบประปา</a><a href="service.html">ระบบ HVAC</a><a href="service.html">ถังเก็บน้ำ GRP</a></div>
+    <div class="footer-col"><h4>ข้อมูล</h4><a href="about-us.html">เกี่ยวกับเรา</a><a href="portfolio.html">ผลงานโครงการ</a><a href="contact.html">ติดต่อเรา</a></div>
+    <div class="footer-col">
+      <h4>ติดต่อ</h4>
+      <div class="footer-contact-item"><span class="icon">📍</span><p>2/88 อาคารบางนาคอมเพล็กซ์ ชั้น 17 ซอยบางนา-ตราด 25 เขตบางนา กทม. 10260</p></div>
+      <div class="footer-contact-item"><span class="icon">📞</span><p>083-912-8999 / 083-212-8999</p></div>
+      <div class="footer-contact-item"><span class="icon">✉️</span><p>maxmep.th@gmail.com</p></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><span>&copy; 2026 MAX MEP Co., Ltd.</span><span>www.maxmep.co.th</span></div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>

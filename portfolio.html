@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ผลงานโครงการ — MAX MEP Co., Ltd.</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── FILTER TABS ── */
+    .filter-bar { background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 0 24px; position: sticky; top: 72px; z-index: 100; }
+    .filter-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 0; overflow-x: auto; }
+    .filter-btn {
+      padding: 16px 20px; font-size: 13px; font-weight: 600;
+      color: var(--gray-500); background: none; border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer; white-space: nowrap; transition: var(--transition);
+    }
+    .filter-btn:hover { color: var(--navy); }
+    .filter-btn.active { color: var(--orange); border-bottom-color: var(--orange); }
+
+    /* ── FEATURED PROJECT ── */
+    .featured-project { background: var(--navy); padding: 80px 24px; }
+    .featured-inner { max-width: 1200px; margin: 0 auto; }
+    .featured-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; }
+    .featured-images { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .featured-images img { width: 100%; border-radius: 6px; object-fit: cover; }
+    .featured-images img:first-child { grid-column: span 2; height: 240px; }
+    .featured-images img:not(:first-child) { height: 160px; }
+    .featured-content .section-title { color: var(--white); }
+    .featured-content .section-subtitle { color: rgba(255,255,255,0.6); }
+    .project-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
+    .meta-item { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 14px 16px; }
+    .meta-label { font-family: var(--font-display); font-size: 10px; letter-spacing: 2px; color: var(--orange); margin-bottom: 4px; }
+    .meta-value { font-size: 13px; color: rgba(255,255,255,0.85); font-weight: 500; }
+    .scope-list { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .scope-item { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: rgba(255,255,255,0.65); }
+    .scope-item::before { content: '→'; color: var(--orange); flex-shrink: 0; }
+
+    /* ── PROJECT GRID ── */
+    .projects-section { padding: 80px 24px; background: var(--off-white); }
+    .projects-grid { max-width: 1200px; margin: 48px auto 0; display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .project-card {
+      background: var(--white);
+      border-radius: 8px; overflow: hidden;
+      border: 1px solid var(--gray-200);
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--orange); }
+    .project-thumb { position: relative; overflow: hidden; height: 220px; }
+    .project-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .project-card:hover .project-thumb img { transform: scale(1.05); }
+    .project-type-badge {
+      position: absolute; top: 14px; left: 14px;
+      background: var(--orange); color: var(--white);
+      font-family: var(--font-display); font-size: 10px; letter-spacing: 1.5px;
+      padding: 4px 10px; border-radius: 3px; text-transform: uppercase;
+    }
+    .project-body { padding: 24px; }
+    .project-name { font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .project-desc { font-size: 13px; color: var(--gray-500); line-height: 1.7; margin-bottom: 16px; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .project-tag { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 3px; background: var(--off-white); color: var(--gray-700); border: 1px solid var(--gray-200); }
+    .project-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--gray-200); }
+    .project-spec-item { font-size: 12px; color: var(--gray-500); }
+    .project-spec-item strong { display: block; font-size: 13px; color: var(--navy); font-weight: 700; }
+
+    /* ── GRP PROJECTS ── */
+    .grp-projects { padding: 80px 24px; background: var(--white); }
+    .grp-projects-inner { max-width: 1200px; margin: 0 auto; }
+    .grp-project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+    .grp-project-card { background: var(--off-white); border-radius: 8px; overflow: hidden; border: 1px solid var(--gray-200); transition: var(--transition); }
+    .grp-project-card:hover { border-color: var(--orange); box-shadow: var(--shadow-md); }
+    .grp-project-thumb { height: 200px; overflow: hidden; }
+    .grp-project-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .grp-project-body { padding: 20px; }
+    .grp-project-name { font-family: var(--font-heading); font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+    .grp-project-details { display: flex; flex-direction: column; gap: 6px; }
+    .grp-detail-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; font-size: 12px; }
+    .grp-detail-label { color: var(--gray-500); flex-shrink: 0; }
+    .grp-detail-value { color: var(--navy); font-weight: 600; text-align: right; }
+
+    /* ── SECTORS SERVED ── */
+    .sectors-served { padding: 80px 24px; background: var(--navy); }
+    .sectors-served-inner { max-width: 1200px; margin: 0 auto; }
+    .sectors-served-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+    .sector-item { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 28px 24px; transition: var(--transition); }
+    .sector-item:hover { background: rgba(232,114,12,0.08); border-color: rgba(232,114,12,0.3); }
+    .sector-emoji { font-size: 32px; margin-bottom: 14px; }
+    .sector-item h3 { font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .sector-item p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+    @media (max-width: 900px) {
+      .featured-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .grp-project-grid { grid-template-columns: 1fr 1fr; }
+      .sectors-served-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .grp-project-grid { grid-template-columns: 1fr; }
+      .sectors-served-grid { grid-template-columns: 1fr; }
+      .project-meta { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="logo-wrap">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="1" y="1" width="38" height="38" rx="4" stroke="#E8720C" stroke-width="2"/><path d="M8 30V10L20 22L32 10V30" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M20 22V30" stroke="#E8720C" stroke-width="3" stroke-linecap="round"/></svg>
+      <div class="logo-text-wrap"><span class="logo-main">MAX <span>MEP</span></span><span class="logo-sub">Engineering Solutions</span></div>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">หน้าหลัก</a>
+      <a href="about-us.html">เกี่ยวกับเรา</a>
+      <a href="service.html">บริการ &amp; ผลิตภัณฑ์</a>
+      <a href="portfolio.html" class="active">ผลงาน</a>
+      <a href="contact.html" class="nav-cta">ติดต่อเรา</a>
+    </nav>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-hero-eyebrow">Project Portfolio</p>
+    <h1>ผลงานโครงการของเรา</h1>
+    <p>ความสำเร็จทางวิศวกรรมครอบคลุมตั้งแต่สนามบินนานาชาติในเอเชียไปจนถึงโครงการโครงสร้างพื้นฐานในท้องถิ่น</p>
+  </div>
+</div>
+
+<!-- FILTER -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <button class="filter-btn active">ทั้งหมด</button>
+    <button class="filter-btn">ระบบ MEP</button>
+    <button class="filter-btn">ถังเก็บน้ำ GRP</button>
+    <button class="filter-btn">โรงงาน</button>
+    <button class="filter-btn">โรงแรม</button>
+    <button class="filter-btn">อาคารพาณิชย์</button>
+  </div>
+</div>
+
+<!-- FEATURED PROJECT -->
+<section class="featured-project">
+  <div class="featured-inner">
+    <p class="section-label" style="color:var(--orange);">Featured Project</p>
+    <h2 class="section-title" style="color:var(--white);margin-bottom:40px;">โครงการเด่น: โรงงานแว่นตา</h2>
+    <div class="featured-grid">
+      <div class="featured-images">
+        <img src="https://placehold.co/1920x1080" alt="โรงงานแว่นตา">
+        <img src="https://placehold.co/1920x1080" alt="MEP System">
+        <img src="https://placehold.co/1920x1080" alt="HVAC">
+      </div>
+      <div class="featured-content">
+        <p class="section-label" style="color:var(--orange);">Industrial MEP</p>
+        <h3 style="font-family:var(--font-heading);font-size:24px;font-weight:700;color:var(--white);margin-bottom:12px;">โครงการโรงงานแว่นตา<br>นิคมอุตสาหกรรมโรจนะ เฟส 2</h3>
+        <p style="color:rgba(255,255,255,0.6);font-size:14px;line-height:1.8;">ระบบวิศวกรรมประกอบอาคาร (MEP) สำหรับอาคารโรงงานและอาคารสำนักงาน พื้นที่ 50,000 ตารางเมตร ด้วยมูลค่าโครงการ 240 ล้านบาท</p>
+        <div class="project-meta">
+          <div class="meta-item"><div class="meta-label">พื้นที่</div><div class="meta-value">50,000 ตร.ม.</div></div>
+          <div class="meta-item"><div class="meta-label">มูลค่าโครงการ</div><div class="meta-value">240,000,000 บาท</div></div>
+          <div class="meta-item"><div class="meta-label">ระยะเวลา</div><div class="meta-value">8 เดือน</div></div>
+          <div class="meta-item"><div class="meta-label">กำหนดแล้วเสร็จ</div><div class="meta-value">กันยายน 2026</div></div>
+        </div>
+        <div class="scope-list">
+          <div class="scope-item">ระบบไฟฟ้าครบวงจร</div>
+          <div class="scope-item">ระบบท่อและอุปกรณ์ประกอบระบบ</div>
+          <div class="scope-item">ระบบไฟฟ้าพร้อมจัดหาวัสดุอุปกรณ์</div>
+          <div class="scope-item">ทดสอบและตรวจสอบระบบท่อก่อนส่งมอบ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS GRID -->
+<section class="projects-section">
+  <div style="max-width:1200px;margin:0 auto;padding:0 0;">
+    <p class="section-label">Our Projects</p>
+    <h2 class="section-title">ผลงานโครงการระบบ MEP</h2>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-thumb">
+        <img src="https://placehold.co/1920x1080" alt="คลินิก">
+        <span class="project-type-badge">Healthcare</span>
+      </div>
+      <div class="project-body">
+        <h3 class="project-name">โครงการคลินิก รายละเอียดโครงการ</h3>
+        <p class="project-desc">งานตกแต่งภายในและระบบ MEP สำหรับคลินิกเอกชน ภายในอาคารสำนักงาน</p>
+        <div class="project-tags">
+          <span class="project-tag">ระบบไฟฟ้า</span>
+          <span class="project-tag">HVAC</span>
+          <span class="project-tag">ระบบประปา</span>
+        </div>
+        <div class="project-specs">
+          <div class="project-spec-item"><strong>7,680,000 บาท</strong>มูลค่าโครงการ</div>
+          <div class="project-spec-item"><strong>อยู่ระหว่างดำเนิน</strong>สถานะ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb">
+        <img src="https://placehold.co/1920x1080" alt="สนามบิน">
+        <span class="project-type-badge">Infrastructure</span>
+      </div>
+      <div class="project-body">
+        <h3 class="project-name">โครงการสนามบิน — HVAC &amp; Electrical</h3>
+        <p class="project-desc">ระบบ HVAC และระบบดับเพลิงในระหว่างการก่อสร้างสนามบินนานาชาติในเอเชีย (2020–2025)</p>
+        <div class="project-tags">
+          <span class="project-tag">HVAC</span>
+          <span class="project-tag">Fire Protection</span>
+          <span class="project-tag">Electrical</span>
+        </div>
+        <div class="project-specs">
+          <div class="project-spec-item"><strong>นานาชาติ</strong>ประเภทโครงการ</div>
+          <div class="project-spec-item"><strong>แล้วเสร็จ</strong>สถานะ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb">
+        <img src="https://placehold.co/1920x1080" alt="โรงแรม">
+        <span class="project-type-badge">Hospitality</span>
+      </div>
+      <div class="project-body">
+        <h3 class="project-name">โรงแรมและรีสอร์ท — MEP ครบวงจร</h3>
+        <p class="project-desc">ติดตั้งระบบถังเก็บน้ำและระบบ MEP ครบวงจรสำหรับโรงแรมและรีสอร์ทหรู</p>
+        <div class="project-tags">
+          <span class="project-tag">GRP Tank</span>
+          <span class="project-tag">Plumbing</span>
+          <span class="project-tag">Fire Protection</span>
+          <span class="project-tag">HVAC</span>
+        </div>
+        <div class="project-specs">
+          <div class="project-spec-item"><strong>Hospitality</strong>ประเภทโครงการ</div>
+          <div class="project-spec-item"><strong>แล้วเสร็จ</strong>สถานะ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb">
+        <img src="https://placehold.co/1920x1080" alt="อาคารพาณิชย์">
+        <span class="project-type-badge">Commercial</span>
+      </div>
+      <div class="project-body">
+        <h3 class="project-name">อาคารพาณิชย์ — ระบบครบวงจร</h3>
+        <p class="project-desc">ออกแบบและติดตั้งระบบครบวงจรสำหรับอาคารสำนักงาน ห้างสรรพสินค้า และศูนย์กลางธุรกิจ</p>
+        <div class="project-tags">
+          <span class="project-tag">ไฟฟ้า</span>
+          <span class="project-tag">HVAC</span>
+          <span class="project-tag">BMS</span>
+        </div>
+        <div class="project-specs">
+          <div class="project-spec-item"><strong>Commercial</strong>ประเภทโครงการ</div>
+          <div class="project-spec-item"><strong>แล้วเสร็จ</strong>สถานะ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb">
+        <img src="https://placehold.co/1920x1080" alt="โรงงาน">
+        <span class="project-type-badge">Industrial</span>
+      </div>
+      <div class="project-body">
+        <h3 class="project-name">โรงงานอุตสาหกรรม — MEP System</h3>
+        <p class="project-desc">จัดหาระบบถังเก็บน้ำและติดตั้งระบบ MEP สำหรับโรงงานผลิตและสถานประกอบการอุตสาหกรรม</p>
+        <div class="project-tags">
+          <span class="project-tag">GRP Tank</span>
+          <span class="project-tag">Plumbing</span>
+          <span class="project-tag">Fire Protection</span>
+        </div>
+        <div class="project-specs">
+          <div class="project-spec-item"><strong>Industrial</strong>ประเภทโครงการ</div>
+          <div class="project-spec-item"><strong>แล้วเสร็จ</strong>สถานะ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb">
+        <img src="https://placehold.co/1920x1080" alt="ที่อยู่อาศัย">
+        <span class="project-type-badge">Residential</span>
+      </div>
+      <div class="project-body">
+        <h3 class="project-name">อสังหาริมทรัพย์และโครงการผสมผสาน</h3>
+        <p class="project-desc">จัดหาระบบน้ำประปาสำหรับอพาร์ตเมนต์ อาคารที่อยู่อาศัย และโครงการพัฒนาที่อยู่อาศัย</p>
+        <div class="project-tags">
+          <span class="project-tag">GRP Tank</span>
+          <span class="project-tag">Water Supply</span>
+          <span class="project-tag">Sanitary</span>
+        </div>
+        <div class="project-specs">
+          <div class="project-spec-item"><strong>Residential</strong>ประเภทโครงการ</div>
+          <div class="project-spec-item"><strong>ต่อเนื่อง</strong>สถานะ</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GRP PROJECTS -->
+<section class="grp-projects">
+  <div class="grp-projects-inner">
+    <p class="section-label">GRP Tank Projects</p>
+    <h2 class="section-title">ผลงานโครงการถังเก็บน้ำ GRP</h2>
+    <p class="section-subtitle">โซลูชันถังเก็บน้ำไฟเบอร์กลาส GRP ของเราประสบความสำเร็จในการนำไปใช้ในหลากหลายอุตสาหกรรมทั่วประเทศไทย</p>
+    <div class="grp-project-grid">
+
+      <div class="grp-project-card">
+        <div class="grp-project-thumb">
+          <img src="https://placehold.co/1920x1080" alt="โรงแรมซัมมิทพาร์ควิว">
+        </div>
+        <div class="grp-project-body">
+          <h4 class="grp-project-name">โรงแรมซัมมิทพาร์ควิว</h4>
+          <div class="grp-project-details">
+            <div class="grp-detail-row"><span class="grp-detail-label">ประเภท:</span><span class="grp-detail-value">ถังเก็บน้ำอุปโภคบริโภค</span></div>
+            <div class="grp-detail-row"><span class="grp-detail-label">ขนาด:</span><span class="grp-detail-value">10×8×3 ม. (สูง)</span></div>
+            <div class="grp-detail-row"><span class="grp-detail-label">ความจุ:</span><span class="grp-detail-value">240 ลบ.ม. / 152,800 แกลลอน</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grp-project-card">
+        <div class="grp-project-thumb">
+          <img src="https://placehold.co/1920x1080" alt="โซน่าปิโตรเลียม">
+        </div>
+        <div class="grp-project-body">
+          <h4 class="grp-project-name">โซน่าปิโตรเลียมไปปไลน์เอนจิเนียริ่ง จำกัด</h4>
+          <div class="grp-project-details">
+            <div class="grp-detail-row"><span class="grp-detail-label">ประเภท:</span><span class="grp-detail-value">ถังเก็บน้ำ GRP (เกาหลี)</span></div>
+            <div class="grp-detail-row"><span class="grp-detail-label">ขนาด:</span><span class="grp-detail-value">10×6×3 ม. (สูง)</span></div>
+            <div class="grp-detail-row"><span class="grp-detail-label">ความจุ:</span><span class="grp-detail-value">180 ลบ.ม. / 39,600 แกลลอน</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grp-project-card">
+        <div class="grp-project-thumb">
+          <img src="https://placehold.co/1920x1080" alt="เอ็มทาวเวอร์">
+        </div>
+        <div class="grp-project-body">
+          <h4 class="grp-project-name">เอ็มทาวเวอร์ (อาคารสำนักงาน)</h4>
+          <div class="grp-project-details">
+            <div class="grp-detail-row"><span class="grp-detail-label">ประเภท:</span><span class="grp-detail-value">ถังดับเพลิง WR/SPK (สเตนเลส)</span></div>
+            <div class="grp-detail-row"><span class="grp-detail-label">ขนาด:</span><span class="grp-detail-value">10×7(4+3)×2.5 ม. (สูง)</span></div>
+            <div class="grp-detail-row"><span class="grp-detail-label">ความจุ:</span><span class="grp-detail-value">175 ลบ.ม. / 38,500 แกลลอน</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grp-project-card">
+        <div class="grp-project-thumb">
+          <img src="https://placehold.co/1920x1080" alt="ชเว ฟู้ด โปรดักชั่น">
+        </div>
+        <div class="grp-project-body">
+          <h4 class="grp-project-name">ชเว ฟู้ด โปรดักชั่น (โรงงานอาหาร)</h4>
+          <div class="grp-project-details">
+            <div class="grp-detail-row"><span class="grp-detail-label">ประเภท:</span><span class="grp-detail-value">ถังเก็บน้ำ (น้ำดื่ม/น้ำบำบัด)</span></div>
+            <div class="grp-detail-row"><span class="grp-detail-label">ขนาด:</span><span class="grp-detail-value">10(5+2+3)×3×3 ม. (สูง)</span></div>
+            <div class="grp-detail-row"><span class="grp-detail-label">ความจุ:</span><span class="grp-detail-value">90 ลบ.ม. / 19,800 แกลลอน</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grp-project-card">
+        <div class="grp-project-thumb">
+          <img src="https://placehold.co/1920x1080" alt="ซิตี้ มาร์ท">
+        </div>
+        <div class="grp-project-body">
+          <h4 class="grp-project-name">ซิตี้ มาร์ท (บริษัท ซิตี้ พร็อพเพอร์ตี้ส์ จำกัด)</h4>
+          <div class="grp-project-details">
+            <div class="grp-detail-row"><span class="grp-detail-label">ประเภท:</span><span class="grp-detail-value">ถังดับเพลิง (GRP เกาหลี)</span></div>
+            <div class="grp-detail-row"><span class="grp-detail-label">ขนาด:</span><span class="grp-detail-value">7×4×2 ม. (สูง) — 1 ใบ</span></div>
+            <div class="grp-detail-row"><span class="grp-detail-label">ความจุ:</span><span class="grp-detail-value">56 ลบ.ม. / 12,320 แกลลอน</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grp-project-card" style="background:var(--navy);border-color:var(--navy);display:flex;align-items:center;justify-content:center;min-height:280px;">
+        <div style="text-align:center;padding:32px;">
+          <div style="font-size:40px;margin-bottom:16px;">📋</div>
+          <h4 style="font-family:var(--font-heading);color:var(--white);font-size:16px;margin-bottom:8px;">โครงการถังเก็บน้ำ GRP</h4>
+          <p style="color:rgba(255,255,255,0.55);font-size:13px;line-height:1.7;margin-bottom:20px;">ติดตั้งทั่วประเทศไทยในหลากหลายอุตสาหกรรม ทั้งโรงแรม โรงงาน อาคารพาณิชย์ และโครงการพัฒนาค้าปลีก</p>
+          <a href="contact.html" class="btn btn-primary" style="font-size:13px;">สอบถามโครงการ →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS SERVED -->
+<section class="sectors-served">
+  <div class="sectors-served-inner">
+    <p class="section-label" style="color:var(--orange);">Industries Served</p>
+    <h2 class="section-title" style="color:var(--white);">อุตสาหกรรมที่เราให้บริการ</h2>
+    <p class="section-subtitle" style="color:rgba(255,255,255,0.55);">MAX MEP ภูมิใจในการนำเสนอโซลูชันด้านวิศวกรรมที่ปรับแต่งให้เหมาะสมกับความต้องการของลูกค้าในภาคส่วนต่างๆ</p>
+    <div class="sectors-served-grid">
+      <div class="sector-item">
+        <div class="sector-emoji">✈️</div>
+        <h3>โครงสร้างพื้นฐานสนามบินนานาชาติ</h3>
+        <p>ติดตั้งระบบเครื่องกลและไฟฟ้าขนาดใหญ่สำหรับโครงการสนามบินนานาชาติ แสดงให้เห็นถึงความสามารถในการบริหารจัดการโครงการขนาดใหญ่ที่สำคัญ</p>
+      </div>
+      <div class="sector-item">
+        <div class="sector-emoji">🏨</div>
+        <h3>โครงการโรงแรมและการบริการ</h3>
+        <p>จัดหาระบบถังเก็บน้ำและติดตั้งระบบเครื่องกลและไฟฟ้าแบบครบวงจรสำหรับโรงแรมและรีสอร์ทหรู</p>
+      </div>
+      <div class="sector-item">
+        <div class="sector-emoji">🏪</div>
+        <h3>การพัฒนาเชิงพาณิชย์และค้าปลีก</h3>
+        <p>ติดตั้งถังเก็บน้ำไฟเบอร์กลาสขนาดใหญ่สำหรับห้างสรรพสินค้าและอาคารพาณิชย์ รวมถึงระบบประปาและระบบดับเพลิง</p>
+      </div>
+      <div class="sector-item">
+        <div class="sector-emoji">🏭</div>
+        <h3>โรงงานอุตสาหกรรม</h3>
+        <p>จัดหาระบบบำรุงรักษาน้ำสำหรับโรงงานผลิต รวมถังเก็บน้ำดื่ม ถังเก็บน้ำบำบัด และระบบน้ำสำหรับกระบวนการผลิต</p>
+      </div>
+      <div class="sector-item">
+        <div class="sector-emoji">🍽️</div>
+        <h3>โรงงานผลิตอาหาร</h3>
+        <p>จัดหาโซลูชันการจัดเก็บน้ำที่ถูกสุขอนามัยพิเศษสำหรับโรงงานแปรรูปอาหาร ซึ่งเป็นไปตามมาตรฐานด้านอาหารที่เข้มงวด</p>
+      </div>
+      <div class="sector-item">
+        <div class="sector-emoji">🏠</div>
+        <h3>อสังหาริมทรัพย์เพื่อการอยู่อาศัย</h3>
+        <p>จัดหาระบบน้ำประปาสำหรับอพาร์ตเมนต์ อาคารที่อยู่อาศัย และโครงการพัฒนาที่อยู่อาศัย พร้อมถังเก็บน้ำที่สามารถปรับขนาดได้</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--orange);padding:56px 24px;">
+  <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;">
+    <div>
+      <h2 style="font-family:var(--font-display);font-size:28px;color:var(--white);font-weight:600;">พร้อมเพิ่มโครงการของคุณในรายการนี้?</h2>
+      <p style="color:rgba(255,255,255,0.75);font-size:15px;margin-top:6px;">ติดต่อเราเพื่อรับคำปรึกษาและใบเสนอราคาฟรี</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="contact.html" class="btn" style="background:var(--white);color:var(--orange);font-weight:700;">เริ่มโครงการ →</a>
+      <a href="tel:083-912-8999" class="btn btn-outline-white">📞 083-912-8999</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo-wrap" style="margin-bottom:12px;display:inline-flex;">
+        <svg width="36" height="36" viewBox="0 0 40 40" fill="none"><rect x="1" y="1" width="38" height="38" rx="4" stroke="#E8720C" stroke-width="2"/><path d="M8 30V10L20 22L32 10V30" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M20 22V30" stroke="#E8720C" stroke-width="3" stroke-linecap="round"/></svg>
+        <div class="logo-text-wrap"><span class="logo-main">MAX <span>MEP</span></span><span class="logo-sub">Engineering Solutions</span></div>
+      </a>
+      <p>บริษัท แม็ก เอ็มอีพี จำกัด ผู้เชี่ยวชาญด้านงานระบบวิศวกรรม M&E ครบวงจร และถังเก็บน้ำ GRP คุณภาพสูง</p>
+    </div>
+    <div class="footer-col"><h4>บริการ</h4><a href="service.html">ระบบดับเพลิง</a><a href="service.html">ระบบไฟฟ้า</a><a href="service.html">ระบบประปา</a><a href="service.html">ระบบ HVAC</a><a href="service.html">ถังเก็บน้ำ GRP</a></div>
+    <div class="footer-col"><h4>ข้อมูล</h4><a href="about-us.html">เกี่ยวกับเรา</a><a href="portfolio.html">ผลงานโครงการ</a><a href="contact.html">ติดต่อเรา</a></div>
+    <div class="footer-col">
+      <h4>ติดต่อ</h4>
+      <div class="footer-contact-item"><span class="icon">📍</span><p>2/88 อาคารบางนาคอมเพล็กซ์ ชั้น 17 ซอยบางนา-ตราด 25 เขตบางนา กทม. 10260</p></div>
+      <div class="footer-contact-item"><span class="icon">📞</span><p>083-912-8999 / 083-212-8999</p></div>
+      <div class="footer-contact-item"><span class="icon">✉️</span><p>maxmep.th@gmail.com</p></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><span>&copy; 2026 MAX MEP Co., Ltd.</span><span>www.maxmep.co.th</span></div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>

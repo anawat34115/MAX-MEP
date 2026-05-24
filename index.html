@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAX MEP Co., Ltd. — ระบบวิศวกรรม M&E ครบวงจร และถังเก็บน้ำ GRP</title>
+  <meta name="description" content="บริษัท แม็ก เอ็มอีพี จำกัด ให้บริการออกแบบ ติดตั้ง และดูแลระบบวิศวกรรม MEP ครบวงจร รวมถึงถังเก็บน้ำ GRP คุณภาพสูง">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── HERO ── */
+    .hero {
+      margin-top: 72px;
+      position: relative;
+      height: calc(100vh - 72px);
+      min-height: 560px;
+      max-height: 820px;
+      overflow: hidden;
+      display: flex; align-items: center;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #091929 0%, #0D2240 55%, #163366 100%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(232,114,12,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232,114,12,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .hero-accent {
+      position: absolute; right: 0; top: 0;
+      width: 55%; height: 100%;
+      background: url('https://placehold.co/1920x1080') center/cover no-repeat;
+      opacity: 0.18;
+      clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-display);
+      font-size: 11px; letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-eyebrow::before { content: ''; width: 40px; height: 2px; background: var(--orange); display: block; }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5.5vw, 64px);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .hero h1 em { color: var(--orange); font-style: normal; }
+    .hero-sub {
+      font-size: clamp(15px, 2vw, 18px);
+      color: rgba(255,255,255,0.6);
+      max-width: 540px;
+      margin: 20px 0 36px;
+      line-height: 1.8;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-scroll {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: rgba(255,255,255,0.35); font-size: 11px; letter-spacing: 2px;
+      text-transform: uppercase; font-family: var(--font-display);
+    }
+    .hero-scroll::after {
+      content: '';
+      display: block; width: 1px; height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+    @keyframes scrollPulse { 0%,100%{opacity:0.3;} 50%{opacity:1;} }
+
+    /* ── CERT STRIP ── */
+    .cert-strip {
+      background: #091929;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 14px 24px;
+    }
+    .cert-strip-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .cert-label { font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,0.3); font-family: var(--font-display); text-transform: uppercase; }
+    .cert-items { display: flex; gap: 32px; flex-wrap: wrap; }
+    .cert-chip {
+      font-family: var(--font-display);
+      font-size: 12px; letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.5);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .cert-chip::before { content: '✓'; color: var(--orange); font-size: 11px; }
+
+    /* ── ABOUT SPLIT ── */
+    .about-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 520px;
+    }
+    .about-image {
+      position: relative;
+      overflow: hidden;
+    }
+    .about-image img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .about-image:hover img { transform: scale(1.03); }
+    .about-image-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(13,34,64,0.3) 0%, transparent 60%);
+    }
+    .about-content {
+      background: var(--white);
+      padding: 64px 56px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--gray-200);
+    }
+    .about-stat { text-align: center; }
+
+    /* ── SERVICES GRID ── */
+    .services-section { background: var(--off-white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1px;
+      background: var(--gray-200);
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 48px;
+    }
+    .service-card {
+      background: var(--white);
+      padding: 36px 28px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--orange);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card:hover { background: #fafbfd; }
+    .service-icon {
+      font-size: 36px; margin-bottom: 20px;
+      display: block;
+    }
+    .service-card h3 {
+      font-family: var(--font-heading);
+      font-size: 17px; font-weight: 700;
+      color: var(--navy); margin-bottom: 10px;
+    }
+    .service-card p { font-size: 13px; color: var(--gray-500); line-height: 1.7; }
+    .service-sub { margin-top: 14px; display: flex; flex-direction: column; gap: 4px; }
+    .service-sub span { font-size: 12px; color: var(--gray-700); display: flex; align-items: center; gap: 6px; }
+    .service-sub span::before { content: '—'; color: var(--orange); font-size: 10px; }
+
+    /* ── GRP FEATURE ── */
+    .grp-section { background: var(--navy); color: var(--white); position: relative; overflow: hidden; }
+    .grp-section::before {
+      content: '';
+      position: absolute; right: -100px; top: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,114,12,0.12) 0%, transparent 70%);
+    }
+    .grp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .grp-content { position: relative; z-index: 1; }
+    .grp-content .section-title { color: var(--white); }
+    .grp-content .section-subtitle { color: rgba(255,255,255,0.6); }
+    .grp-features { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+    .grp-feature { display: flex; gap: 14px; align-items: flex-start; }
+    .grp-feature-num {
+      font-family: var(--font-display);
+      font-size: 11px; letter-spacing: 2px;
+      color: var(--orange); width: 24px; flex-shrink: 0; padding-top: 2px;
+    }
+    .grp-feature-text h4 { font-weight: 600; font-size: 14px; color: var(--white); }
+    .grp-feature-text p { font-size: 13px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+    .grp-image {
+      position: relative;
+      border-radius: 8px; overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    .grp-image img { width: 100%; height: 100%; object-fit: cover; }
+    .grp-image::after {
+      content: '';
+      position: absolute; inset: 0;
+      border: 2px solid rgba(232,114,12,0.3);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    /* ── PROCESS ── */
+    .process-section { background: var(--white); }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 56px;
+      position: relative;
+    }
+    .process-step {
+      padding: 0 24px;
+      position: relative;
+      text-align: left;
+    }
+    .process-step:not(:last-child)::after {
+      content: '';
+      position: absolute; right: -1px; top: 28px;
+      width: 2px; height: 40px;
+      background: var(--gray-200);
+    }
+    .process-step-num {
+      font-family: var(--font-display);
+      font-size: 48px; font-weight: 700;
+      color: rgba(13,34,64,0.06);
+      line-height: 1; margin-bottom: 16px;
+    }
+    .process-step h3 {
+      font-family: var(--font-heading);
+      font-size: 16px; font-weight: 700;
+      color: var(--navy); margin-bottom: 8px;
+    }
+    .process-step p { font-size: 13px; color: var(--gray-500); line-height: 1.7; }
+    .process-step-icon {
+      width: 44px; height: 44px;
+      background: var(--orange);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; margin-bottom: 20px;
+    }
+
+    /* ── SECTORS ── */
+    .sectors-section { background: var(--off-white); }
+    .sectors-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .sector-card {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      aspect-ratio: 16/10;
+      cursor: pointer;
+    }
+    .sector-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .sector-card:hover img { transform: scale(1.06); }
+    .sector-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(13,34,64,0.88) 0%, rgba(13,34,64,0.2) 60%, transparent 100%);
+    }
+    .sector-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 20px 24px;
+    }
+    .sector-tag {
+      font-family: var(--font-display);
+      font-size: 10px; letter-spacing: 2px;
+      color: var(--orange); text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .sector-name {
+      font-family: var(--font-heading);
+      font-size: 18px; font-weight: 700;
+      color: var(--white);
+    }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: var(--orange);
+      padding: 56px 24px;
+    }
+    .cta-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 32px; flex-wrap: wrap;
+    }
+    .cta-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 3vw, 32px);
+      color: var(--white); font-weight: 600; letter-spacing: 0.5px;
+    }
+    .cta-text p { color: rgba(255,255,255,0.75); font-size: 15px; margin-top: 6px; }
+    .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    @media (max-width: 900px) {
+      .about-split { grid-template-columns: 1fr; }
+      .about-image { height: 300px; }
+      .about-content { padding: 48px 32px; }
+      .grp-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .process-step:not(:last-child)::after { display: none; }
+      .sectors-grid { grid-template-columns: 1fr 1fr; }
+      .about-stats { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 32px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .sectors-grid { grid-template-columns: 1fr; }
+      .about-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="logo-wrap">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="38" height="38" rx="4" stroke="#E8720C" stroke-width="2"/>
+        <path d="M8 30V10L20 22L32 10V30" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M20 22V30" stroke="#E8720C" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <div class="logo-text-wrap">
+        <span class="logo-main">MAX <span>MEP</span></span>
+        <span class="logo-sub">Engineering Solutions</span>
+      </div>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html" class="active">หน้าหลัก</a>
+      <a href="about-us.html">เกี่ยวกับเรา</a>
+      <a href="service.html">บริการ &amp; ผลิตภัณฑ์</a>
+      <a href="portfolio.html">ผลงาน</a>
+      <a href="contact.html" class="nav-cta">ติดต่อเรา</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="เมนู">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow fade-up">MAX MEP Co., Ltd.</p>
+    <h1 class="fade-up fade-up-d1">
+      ระบบวิศวกรรม<br>
+      <em>M&amp;E ครบวงจร</em><br>
+      &amp; ถังเก็บน้ำ GRP
+    </h1>
+    <p class="hero-sub fade-up fade-up-d2">
+      ออกแบบ ติดตั้ง และดูแลระบบวิศวกรรมสำหรับอาคาร โรงงาน และโครงการขนาดใหญ่ทั่วประเทศไทย ด้วยมาตรฐานสากล
+    </p>
+    <div class="hero-actions fade-up fade-up-d3">
+      <a href="contact.html" class="btn btn-primary">เริ่มโครงการของคุณ →</a>
+      <a href="service.html" class="btn btn-outline-white">ดูบริการทั้งหมด</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- CERT STRIP -->
+<div class="cert-strip">
+  <div class="cert-strip-inner">
+    <span class="cert-label">มาตรฐานที่รับรอง</span>
+    <div class="cert-items">
+      <span class="cert-chip">ISO 9001</span>
+      <span class="cert-chip">WRAS Certified</span>
+      <span class="cert-chip">PSB Certified</span>
+      <span class="cert-chip">NFPA Standards</span>
+      <span class="cert-chip">EIT Thailand</span>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT SPLIT -->
+<section class="about-split">
+  <div class="about-image">
+    <img src="https://placehold.co/1920x1080" alt="MAX MEP Office">
+    <div class="about-image-overlay"></div>
+  </div>
+  <div class="about-content">
+    <p class="section-label">เกี่ยวกับเรา</p>
+    <h2 class="section-title">พันธมิตรด้านระบบวิศวกรรม<br>ที่คุณไว้วางใจได้</h2>
+    <div class="orange-rule"></div>
+    <p style="color:var(--gray-500);font-size:14px;line-height:1.9;margin-top:8px;">
+      บริษัท แม็ก เอ็มอีพี จำกัด (MAX MEP) เป็นบริษัทผู้เชี่ยวชาญด้านงานระบบวิศวกรรมเครื่องกลและไฟฟ้า (M&E) แบบครบวงจร ให้บริการออกแบบ ติดตั้ง และดูแลระบบสำหรับอาคาร โรงงาน และโครงการต่างๆ ทั่วประเทศไทย
+    </p>
+    <p style="color:var(--gray-500);font-size:14px;line-height:1.9;margin-top:14px;">
+      เราไม่ได้เป็นเพียงผู้รับเหมา แต่คือพันธมิตรระยะยาวของคุณ มุ่งมั่นสร้างความมั่นใจว่าระบบอาคารจะปลอดภัย มีประสิทธิภาพ และใช้งานได้ยาวนาน ด้วยทีมวิศวกรผู้เชี่ยวชาญและมาตรฐานระดับสากล
+    </p>
+    <div class="about-stats">
+      <div class="about-stat">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">วิศวกรผู้เชี่ยวชาญ</div>
+      </div>
+      <div class="about-stat">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">ปีประสบการณ์</div>
+      </div>
+      <div class="about-stat">
+        <div class="stat-num">30ปี+</div>
+        <div class="stat-label">อายุถัง GRP</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section services-section">
+  <div class="container">
+    <p class="section-label">บริการของเรา</p>
+    <h2 class="section-title">บริการติดตั้งระบบวิศวกรรม<br>ไฟฟ้าเครื่องกล และประปา (MEP)</h2>
+    <p class="section-subtitle" style="max-width:600px;">โซลูชันแบบบูรณาการที่เชื่อมโยงกันอย่างสมบูรณ์ เพื่อความปลอดภัยและประสิทธิภาพสูงสุดของอาคาร</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🔥</span>
+        <h3>ระบบดับเพลิง</h3>
+        <p>Fire Protection System ครบวงจร ออกแบบให้สอดคล้องกับมาตรฐานของประเทศไทยและ NFPA</p>
+        <div class="service-sub">
+          <span>Sprinkler System</span>
+          <span>Fire Hydrant System</span>
+          <span>Fire Alarm System</span>
+          <span>Fire Pump System</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">⚡</span>
+        <h3>ระบบไฟฟ้า</h3>
+        <p>Electrical System ครบวงจร ทั้งไฟฟ้าแรงสูง/แรงต่ำ พร้อมระบบสำรองไฟ</p>
+        <div class="service-sub">
+          <span>High/Low Voltage System</span>
+          <span>MDB / DB Panel</span>
+          <span>Generator System</span>
+          <span>Emergency Lighting</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💧</span>
+        <h3>ระบบประปาและสุขาภิบาล</h3>
+        <p>Plumbing System ครบวงจร ตั้งแต่ระบบจ่ายน้ำ ระบายน้ำ ไปจนถึงบำบัดน้ำเสีย</p>
+        <div class="service-sub">
+          <span>Water Supply System</span>
+          <span>Wastewater Treatment</span>
+          <span>Water Pump & Tank</span>
+          <span>RO / Water Filtration</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">❄️</span>
+        <h3>ระบบปรับอากาศ (HVAC)</h3>
+        <p>Air Conditioning &amp; Ventilation ครบวงจร ทั้งระบบน้ำเย็น VRV/VRF และ BMS</p>
+        <div class="service-sub">
+          <span>Chilled Water System</span>
+          <span>VRV / VRF System</span>
+          <span>AHU / FCU</span>
+          <span>BMS Control</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">📡</span>
+        <h3>ระบบ ELV &amp; Smart Building</h3>
+        <p>Extra Low Voltage System และระบบอาคารอัจฉริยะครบวงจร</p>
+        <div class="service-sub">
+          <span>CCTV System</span>
+          <span>Access Control</span>
+          <span>Network / PA System</span>
+          <span>BMS Automation</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🏗️</span>
+        <h3>ถังเก็บน้ำ GRP</h3>
+        <p>ผลิตและติดตั้งถังเก็บน้ำไฟเบอร์กลาส (GRP) คุณภาพสูง ความจุ 1,000 – 500,000+ ลิตร</p>
+        <div class="service-sub">
+          <span>น้ำหนักเบา แข็งแรงเทียบเท่าเหล็ก</span>
+          <span>ISO-9001, WRAS, PSB Certified</span>
+          <span>อายุการใช้งาน 30+ ปี</span>
+          <span>ออกแบบโมดูลาร์ปรับขนาดได้</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRP FEATURE -->
+<section class="section grp-section">
+  <div class="container">
+    <div class="grp-grid">
+      <div class="grp-content">
+        <p class="section-label" style="color:var(--orange);">ผลิตภัณฑ์เด่น</p>
+        <h2 class="section-title" style="color:var(--white);">ถังเก็บน้ำ GRP<br>ไฟเบอร์กลาส</h2>
+        <div class="orange-rule"></div>
+        <p class="section-subtitle" style="color:rgba(255,255,255,0.6);">ผลิตจาก SMC (Sheet Molding Compound) คุณภาพสูง รองรับการใช้งานทั้งน้ำดื่ม ระบบดับเพลิง และอุตสาหกรรม</p>
+        <div class="grp-features">
+          <div class="grp-feature">
+            <span class="grp-feature-num">01</span>
+            <div class="grp-feature-text">
+              <h4>น้ำหนักเบา แข็งแรงสูง</h4>
+              <p>แข็งแรงเทียบเท่าเหล็ก น้ำหนักเพียง 1/4 ช่วยลดต้นทุนโครงสร้างและติดตั้งง่าย</p>
+            </div>
+          </div>
+          <div class="grp-feature">
+            <span class="grp-feature-num">02</span>
+            <div class="grp-feature-text">
+              <h4>ถูกสุขอนามัย ไม่เป็นสนิม</h4>
+              <p>พื้นผิวภายในเรียบ ลดการสะสมของตะไคร่น้ำและแบคทีเรีย เหมาะสำหรับน้ำดื่ม</p>
+            </div>
+          </div>
+          <div class="grp-feature">
+            <span class="grp-feature-num">03</span>
+            <div class="grp-feature-text">
+              <h4>อายุการใช้งาน 30+ ปี</h4>
+              <p>รองรับการใช้งานมากกว่า 30 ปี พร้อมค่าบำรุงรักษาต่ำ ลดต้นทุนระยะยาว</p>
+            </div>
+          </div>
+          <div class="grp-feature">
+            <span class="grp-feature-num">04</span>
+            <div class="grp-feature-text">
+              <h4>ปรับขนาดได้อิสระ</h4>
+              <p>ออกแบบโมดูลาร์ ปรับความจุตามพื้นที่ 1,000 ถึง 500,000+ ลิตร</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:32px;">
+          <a href="service.html" class="btn btn-primary">ดูข้อมูลถัง GRP →</a>
+        </div>
+      </div>
+      <div class="grp-image">
+        <img src="https://placehold.co/1920x1080" alt="GRP Water Tank">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section process-section">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;">
+      <div>
+        <p class="section-label">วิธีการทำงาน</p>
+        <h2 class="section-title">ขั้นตอนการทำงาน<br>ที่เป็นระบบ</h2>
+      </div>
+      <a href="contact.html" class="btn btn-outline">ปรึกษาฟรี →</a>
+    </div>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="process-step-num">01</div>
+        <div class="process-step-icon">🔍</div>
+        <h3>ปรึกษาและสำรวจ</h3>
+        <p>ทำความเข้าใจความต้องการและสำรวจพื้นที่หน้างานอย่างละเอียด เพื่อวางรากฐานโครงการ</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">02</div>
+        <div class="process-step-icon">📐</div>
+        <h3>ออกแบบวิศวกรรม</h3>
+        <p>จัดทำแบบแปลน ข้อกำหนดเทคนิค และคำนวณระบบ MEP ตามมาตรฐานสากล</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">03</div>
+        <div class="process-step-icon">⚙️</div>
+        <h3>ติดตั้งและควบคุม</h3>
+        <p>ดำเนินการโดยทีมวิศวกรที่ผ่านการฝึกอบรม ควบคุมคุณภาพทุกขั้นตอน</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">04</div>
+        <div class="process-step-icon">✅</div>
+        <h3>ส่งมอบและดูแล</h3>
+        <p>ทดสอบระบบ ส่งมอบพร้อมเอกสาร และให้บริการบำรุงรักษาต่อเนื่อง</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section class="section sectors-section">
+  <div class="container">
+    <p class="section-label">อุตสาหกรรมที่ให้บริการ</p>
+    <h2 class="section-title">ครอบคลุมทุกภาคส่วนหลัก</h2>
+    <div class="sectors-grid">
+      <div class="sector-card">
+        <img src="https://placehold.co/1920x1080" alt="โรงงาน">
+        <div class="sector-overlay"></div>
+        <div class="sector-info">
+          <div class="sector-tag">Industrial</div>
+          <div class="sector-name">โรงงานอุตสาหกรรม</div>
+        </div>
+      </div>
+      <div class="sector-card">
+        <img src="https://placehold.co/1920x1080" alt="โรงแรม">
+        <div class="sector-overlay"></div>
+        <div class="sector-info">
+          <div class="sector-tag">Hospitality</div>
+          <div class="sector-name">โรงแรม &amp; รีสอร์ท</div>
+        </div>
+      </div>
+      <div class="sector-card">
+        <img src="https://placehold.co/1920x1080" alt="สนามบิน">
+        <div class="sector-overlay"></div>
+        <div class="sector-info">
+          <div class="sector-tag">Infrastructure</div>
+          <div class="sector-name">โครงสร้างพื้นฐาน</div>
+        </div>
+      </div>
+      <div class="sector-card">
+        <img src="https://placehold.co/1920x1080" alt="อาคารพาณิชย์">
+        <div class="sector-overlay"></div>
+        <div class="sector-info">
+          <div class="sector-tag">Commercial</div>
+          <div class="sector-name">อาคารพาณิชย์</div>
+        </div>
+      </div>
+      <div class="sector-card">
+        <img src="https://placehold.co/1920x1080" alt="โรงพยาบาล">
+        <div class="sector-overlay"></div>
+        <div class="sector-info">
+          <div class="sector-tag">Healthcare</div>
+          <div class="sector-name">โรงพยาบาล &amp; คลินิก</div>
+        </div>
+      </div>
+      <div class="sector-card">
+        <img src="https://placehold.co/1920x1080" alt="ที่อยู่อาศัย">
+        <div class="sector-overlay"></div>
+        <div class="sector-info">
+          <div class="sector-tag">Residential</div>
+          <div class="sector-name">อสังหาริมทรัพย์</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <h2>พร้อมเริ่มโครงการของคุณแล้วหรือยัง?</h2>
+      <p>ทีมวิศวกรของเราพร้อมให้คำปรึกษาและนำเสนอโซลูชันที่เหมาะสม</p>
+    </div>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn" style="background:var(--white);color:var(--orange);font-weight:700;">ติดต่อเรา →</a>
+      <a href="tel:083-912-8999" class="btn btn-outline-white">📞 083-912-8999</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo-wrap" style="margin-bottom:12px;display:inline-flex;">
+        <svg width="36" height="36" viewBox="0 0 40 40" fill="none"><rect x="1" y="1" width="38" height="38" rx="4" stroke="#E8720C" stroke-width="2"/><path d="M8 30V10L20 22L32 10V30" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M20 22V30" stroke="#E8720C" stroke-width="3" stroke-linecap="round"/></svg>
+        <div class="logo-text-wrap">
+          <span class="logo-main">MAX <span>MEP</span></span>
+          <span class="logo-sub">Engineering Solutions</span>
+        </div>
+      </a>
+      <p>บริษัท แม็ก เอ็มอีพี จำกัด ผู้เชี่ยวชาญด้านงานระบบวิศวกรรม M&E ครบวงจร และถังเก็บน้ำ GRP คุณภาพสูง สำหรับอาคาร โรงงาน และโครงการทั่วประเทศไทย</p>
+    </div>
+    <div class="footer-col">
+      <h4>บริการ</h4>
+      <a href="service.html">ระบบดับเพลิง</a>
+      <a href="service.html">ระบบไฟฟ้า</a>
+      <a href="service.html">ระบบประปา</a>
+      <a href="service.html">ระบบ HVAC</a>
+      <a href="service.html">ถังเก็บน้ำ GRP</a>
+    </div>
+    <div class="footer-col">
+      <h4>ข้อมูล</h4>
+      <a href="about-us.html">เกี่ยวกับเรา</a>
+      <a href="portfolio.html">ผลงานโครงการ</a>
+      <a href="contact.html">ติดต่อเรา</a>
+    </div>
+    <div class="footer-col">
+      <h4>ติดต่อ</h4>
+      <div class="footer-contact-item">
+        <span class="icon">📍</span>
+        <p>2/88 อาคารบางนาคอมเพล็กซ์ ออฟฟิศ ทาวเวอร์ ชั้น 17 ซอยบางนา-ตราด 25 แขวงบางนาเหนือ เขตบางนา กทม. 10260</p>
+      </div>
+      <div class="footer-contact-item">
+        <span class="icon">📞</span>
+        <p>083-912-8999<br>083-212-8999</p>
+      </div>
+      <div class="footer-contact-item">
+        <span class="icon">✉️</span>
+        <p>maxmep.th@gmail.com</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 MAX MEP Co., Ltd. All rights reserved.</span>
+    <span>www.maxmep.co.th</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

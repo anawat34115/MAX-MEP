@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ติดต่อเรา — MAX MEP Co., Ltd.</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── CONTACT LAYOUT ── */
+    .contact-section { padding: 80px 24px; background: var(--white); }
+    .contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start; }
+
+    /* ── CONTACT INFO ── */
+    .contact-info { }
+    .contact-info-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+    .contact-info-card {
+      padding: 20px 24px;
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      border-left: 4px solid var(--orange);
+      display: flex; gap: 16px; align-items: flex-start;
+      transition: var(--transition);
+    }
+    .contact-info-card:hover { box-shadow: var(--shadow-md); border-left-color: var(--orange); }
+    .contact-info-icon { font-size: 24px; flex-shrink: 0; }
+    .contact-info-content h4 { font-family: var(--font-display); font-size: 11px; letter-spacing: 2px; color: var(--orange); margin-bottom: 6px; }
+    .contact-info-content p { font-size: 14px; color: var(--navy); font-weight: 500; line-height: 1.7; }
+    .contact-info-content a { color: var(--navy); text-decoration: none; font-weight: 500; }
+    .contact-info-content a:hover { color: var(--orange); }
+
+    .hours-block { margin-top: 32px; padding: 24px; background: var(--navy); border-radius: 8px; }
+    .hours-block h4 { font-family: var(--font-display); font-size: 11px; letter-spacing: 2px; color: var(--orange); margin-bottom: 14px; }
+    .hours-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row span:first-child { font-size: 13px; color: rgba(255,255,255,0.65); }
+    .hours-row span:last-child { font-size: 13px; color: var(--white); font-weight: 600; }
+    .hours-open { color: var(--orange) !important; }
+
+    /* ── FORM ── */
+    .contact-form-wrap { }
+    .form-header { margin-bottom: 32px; }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label {
+      font-family: var(--font-display); font-size: 11px; letter-spacing: 2px;
+      color: var(--gray-700); text-transform: uppercase;
+    }
+    .form-input, .form-select, .form-textarea {
+      padding: 12px 16px;
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      font-family: var(--font-body); font-size: 14px;
+      color: var(--text);
+      background: var(--white);
+      transition: var(--transition);
+      outline: none;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(232,114,12,0.1);
+    }
+    .form-textarea { resize: vertical; min-height: 130px; }
+    .form-select { cursor: pointer; }
+    .form-submit {
+      background: var(--orange); color: var(--white);
+      padding: 14px 32px; border: none; border-radius: 6px;
+      font-family: var(--font-body); font-size: 15px; font-weight: 600;
+      cursor: pointer; transition: var(--transition);
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .form-submit:hover { background: var(--orange-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(232,114,12,0.35); }
+    .form-note { font-size: 12px; color: var(--gray-500); margin-top: 8px; }
+
+    /* ── MAP ── */
+    .map-section { padding: 0 24px 80px; background: var(--white); }
+    .map-inner { max-width: 1200px; margin: 0 auto; }
+    .map-embed { border-radius: 8px; overflow: hidden; border: 1px solid var(--gray-200); }
+    .map-embed iframe { width: 100%; height: 400px; display: block; border: none; }
+
+    /* ── CONTACT CHANNELS ── */
+    .channels-section { padding: 80px 24px; background: var(--off-white); }
+    .channels-grid { max-width: 1200px; margin: 40px auto 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .channel-card {
+      background: var(--white); border-radius: 8px; padding: 32px 28px;
+      border: 1px solid var(--gray-200);
+      text-align: center; transition: var(--transition);
+    }
+    .channel-card:hover { border-color: var(--orange); box-shadow: var(--shadow-md); transform: translateY(-4px); }
+    .channel-emoji { font-size: 40px; margin-bottom: 16px; }
+    .channel-card h3 { font-family: var(--font-heading); font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .channel-card p { font-size: 13px; color: var(--gray-500); line-height: 1.7; margin-bottom: 16px; }
+    .channel-value { font-size: 15px; font-weight: 700; color: var(--orange); }
+    .channel-value a { color: var(--orange); text-decoration: none; }
+
+    /* ── WHY CONTACT ── */
+    .why-section { padding: 80px 24px; background: var(--navy); }
+    .why-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .why-list { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+    .why-item { display: flex; gap: 16px; align-items: flex-start; }
+    .why-check { width: 24px; height: 24px; background: var(--orange); border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; color: var(--white); margin-top: 1px; }
+    .why-item h4 { font-weight: 700; font-size: 15px; color: var(--white); margin-bottom: 4px; }
+    .why-item p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+    .why-image { border-radius: 8px; overflow: hidden; }
+    .why-image img { width: 100%; height: 400px; object-fit: cover; display: block; }
+
+    @media (max-width: 900px) {
+      .contact-inner { grid-template-columns: 1fr; }
+      .channels-grid { grid-template-columns: 1fr; }
+      .why-inner { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="logo-wrap">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="1" y="1" width="38" height="38" rx="4" stroke="#E8720C" stroke-width="2"/><path d="M8 30V10L20 22L32 10V30" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M20 22V30" stroke="#E8720C" stroke-width="3" stroke-linecap="round"/></svg>
+      <div class="logo-text-wrap"><span class="logo-main">MAX <span>MEP</span></span><span class="logo-sub">Engineering Solutions</span></div>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">หน้าหลัก</a>
+      <a href="about-us.html">เกี่ยวกับเรา</a>
+      <a href="service.html">บริการ &amp; ผลิตภัณฑ์</a>
+      <a href="portfolio.html">ผลงาน</a>
+      <a href="contact.html" class="active nav-cta">ติดต่อเรา</a>
+    </nav>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-hero-eyebrow">Contact Us</p>
+    <h1>ติดต่อเรา</h1>
+    <p>ทีมวิศวกรของเราพร้อมให้คำปรึกษาและนำเสนอโซลูชันที่เหมาะกับโครงการของคุณ ไม่มีค่าใช้จ่าย</p>
+  </div>
+</div>
+
+<!-- CONTACT MAIN -->
+<section class="contact-section">
+  <div class="contact-inner">
+
+    <!-- INFO SIDE -->
+    <div class="contact-info">
+      <p class="section-label">ข้อมูลติดต่อ</p>
+      <h2 class="section-title">มาร่วมสร้างอนาคต<br>ที่ยั่งยืนไปด้วยกัน</h2>
+      <div class="orange-rule"></div>
+      <p style="color:var(--gray-500);font-size:14px;line-height:1.9;margin-top:12px;">ทีมงานของเราพร้อมให้คำปรึกษาและส่งมอบโครงการงานระบบ MEP ของคุณด้วยคุณภาพและมาตรฐานความปลอดภัยสูงสุด เรายินดีให้บริการคุณ</p>
+
+      <div class="contact-info-cards">
+        <div class="contact-info-card">
+          <div class="contact-info-icon">📍</div>
+          <div class="contact-info-content">
+            <h4>ที่อยู่สำนักงาน</h4>
+            <p>บริษัท แม็ก เอ็มอีพี จำกัด<br>2/88 อาคารบางนาคอมเพล็กซ์ ออฟฟิศ ทาวเวอร์ ชั้น 17<br>ซอยบางนา-ตราด 25 แขวงบางนาเหนือ เขตบางนา<br>กรุงเทพมหานคร 10260</p>
+          </div>
+        </div>
+        <div class="contact-info-card">
+          <div class="contact-info-icon">📞</div>
+          <div class="contact-info-content">
+            <h4>หมายเลขโทรศัพท์</h4>
+            <p><a href="tel:083-912-8999">083-912-8999</a><br><a href="tel:083-212-8999">083-212-8999</a></p>
+          </div>
+        </div>
+        <div class="contact-info-card">
+          <div class="contact-info-icon">✉️</div>
+          <div class="contact-info-content">
+            <h4>อีเมล</h4>
+            <p><a href="mailto:maxmep.th@gmail.com">maxmep.th@gmail.com</a></p>
+          </div>
+        </div>
+        <div class="contact-info-card">
+          <div class="contact-info-icon">🌐</div>
+          <div class="contact-info-content">
+            <h4>เว็บไซต์</h4>
+            <p><a href="http://www.maxmep.co.th" target="_blank">www.maxmep.co.th</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hours-block">
+        <h4>เวลาทำการ</h4>
+        <div class="hours-row">
+          <span>วันจันทร์ – วันศุกร์</span>
+          <span class="hours-open">09:30 – 17:30 น.</span>
+        </div>
+        <div class="hours-row">
+          <span>วันเสาร์</span>
+          <span style="color:rgba(255,255,255,0.4);">ปิดทำการ</span>
+        </div>
+        <div class="hours-row">
+          <span>วันอาทิตย์ / วันหยุดนักขัตฤกษ์</span>
+          <span style="color:rgba(255,255,255,0.4);">ปิดทำการ</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM SIDE -->
+    <div class="contact-form-wrap">
+      <div class="form-header">
+        <p class="section-label">ส่งข้อความถึงเรา</p>
+        <h2 class="section-title">แจ้งรายละเอียด<br>โครงการของคุณ</h2>
+      </div>
+
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="name">ชื่อ-นามสกุล *</label>
+            <input class="form-input" type="text" id="name" name="name" placeholder="กรอกชื่อของคุณ" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="company">บริษัท / องค์กร</label>
+            <input class="form-input" type="text" id="company" name="company" placeholder="ชื่อบริษัท (ถ้ามี)">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="phone">เบอร์โทรศัพท์ *</label>
+            <input class="form-input" type="tel" id="phone" name="phone" placeholder="0xx-xxx-xxxx" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">อีเมล</label>
+            <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="service">บริการที่สนใจ</label>
+          <select class="form-select" id="service" name="service">
+            <option value="">-- เลือกประเภทบริการ --</option>
+            <option>ระบบดับเพลิง (Fire Protection System)</option>
+            <option>ระบบไฟฟ้า (Electrical System)</option>
+            <option>ระบบประปาและสุขาภิบาล (Plumbing System)</option>
+            <option>ระบบปรับอากาศ (HVAC System)</option>
+            <option>ระบบ ELV &amp; Smart Building</option>
+            <option>ถังเก็บน้ำ GRP ไฟเบอร์กลาส</option>
+            <option>MEP ครบวงจร (หลายระบบ)</option>
+            <option>อื่นๆ / ไม่แน่ใจ</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="project-type">ประเภทโครงการ</label>
+          <select class="form-select" id="project-type" name="project-type">
+            <option value="">-- เลือกประเภทโครงการ --</option>
+            <option>โรงงานอุตสาหกรรม</option>
+            <option>โรงแรม &amp; รีสอร์ท</option>
+            <option>อาคารพาณิชย์ / สำนักงาน</option>
+            <option>โรงพยาบาล &amp; คลินิก</option>
+            <option>โครงสร้างพื้นฐาน</option>
+            <option>อสังหาริมทรัพย์เพื่อการอยู่อาศัย</option>
+            <option>โรงงานผลิตอาหาร</option>
+            <option>อื่นๆ</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">รายละเอียดโครงการ / ข้อความ *</label>
+          <textarea class="form-textarea" id="message" name="message" placeholder="โปรดอธิบายรายละเอียดโครงการ เช่น พื้นที่ใช้สอย ระบบที่ต้องการ หรือข้อกำหนดพิเศษ..." required></textarea>
+        </div>
+        <button type="submit" class="form-submit">
+          ส่งข้อความ →
+        </button>
+        <p class="form-note">* ทีมงานของเราจะติดต่อกลับภายใน 1 วันทำการ</p>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section">
+  <div class="map-inner">
+    <div class="map-embed">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3877.0607836862475!2d100.67398!3d13.6806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d605e7c9b0c9b%3A0x6e7ef3b1c9e8c8c0!2sBangna%20Complex%20Office%20Tower!5e0!3m2!1sth!2sth!4v1700000000000"
+        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="MAX MEP Office Location">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CHANNELS -->
+<section class="channels-section">
+  <div style="max-width:1200px;margin:0 auto;">
+    <p class="section-label">ช่องทางการติดต่อ</p>
+    <h2 class="section-title">ติดต่อเราได้หลายช่องทาง</h2>
+  </div>
+  <div class="channels-grid">
+    <div class="channel-card">
+      <div class="channel-emoji">📞</div>
+      <h3>โทรศัพท์</h3>
+      <p>ติดต่อทีมงานของเราโดยตรง พร้อมให้คำปรึกษาทันที ในวันและเวลาทำการ</p>
+      <div class="channel-value">
+        <a href="tel:083-912-8999">083-912-8999</a><br>
+        <a href="tel:083-212-8999">083-212-8999</a>
+      </div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-emoji">💬</div>
+      <h3>LINE Official</h3>
+      <p>ส่งข้อความผ่าน LINE สะดวก รวดเร็ว พร้อมรับข่าวสารและโปรโมชั่นล่าสุด</p>
+      <div class="channel-value">@maxmep</div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-emoji">✉️</div>
+      <h3>อีเมล</h3>
+      <p>ส่งรายละเอียดโครงการ แบบแปลน หรือข้อสงสัยมาได้ที่อีเมลของเรา</p>
+      <div class="channel-value"><a href="mailto:maxmep.th@gmail.com">maxmep.th@gmail.com</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CONTACT -->
+<section class="why-section">
+  <div class="why-inner">
+    <div>
+      <p class="section-label" style="color:var(--orange);">ทำไมต้องเลือก MAX MEP</p>
+      <h2 class="section-title" style="color:var(--white);">เหตุผลที่ควรเริ่ม<br>โครงการกับเรา</h2>
+      <div class="orange-rule"></div>
+      <div class="why-list">
+        <div class="why-item">
+          <div class="why-check">✓</div>
+          <div>
+            <h4>ผู้รับผิดชอบเพียงรายเดียว</h4>
+            <p>ระบบ M&E และถังเก็บน้ำอยู่ภายใต้ผู้รับเหมาเพียงรายเดียว มีความมุ่งมั่นในการทำงานอย่างเคร่งครัดและมีประสบการณ์ในภูมิภาค</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-check">✓</div>
+          <div>
+            <h4>โซลูชันแบบครบวงจร</h4>
+            <p>รวมระบบ M&E ระบบป้องกันอัคคีภัย ระบบน้ำดื่ม และการปรับปรุงอาคารในบริการเดียว</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-check">✓</div>
+          <div>
+            <h4>การประกันคุณภาพ</h4>
+            <p>งานทั้งหมดเป็นไปตามมาตรฐาน ข้อกำหนดของประเทศไทย และหลักปฏิบัติที่ดีที่สุดสั่งสมจากประสบการณ์ในภูมิภาค</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-check">✓</div>
+          <div>
+            <h4>บริการหลังการขาย 24 ชม.</h4>
+            <p>ทีมผู้เชี่ยวชาญของเราพร้อมให้บริการตลอด 24 ชั่วโมงทุกวัน เพื่อแก้ไขปัญหาฉุกเฉินและลดการหยุดชะงัก</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-image">
+      <img src="https://placehold.co/1920x1080" alt="MAX MEP Team">
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section style="background:var(--orange);padding:56px 24px;">
+  <div style="max-width:1200px;margin:0 auto;text-align:center;">
+    <h2 style="font-family:var(--font-display);font-size:clamp(22px,3vw,36px);color:var(--white);font-weight:600;margin-bottom:12px;">เราพร้อมเป็นพันธมิตรระยะยาวของคุณ</h2>
+    <p style="color:rgba(255,255,255,0.75);font-size:15px;max-width:540px;margin:0 auto 28px;">"เราไม่ได้เป็นเพียงผู้รับเหมา แต่เราคือพันธมิตรระยะยาวของคุณ ในการสร้างความมั่นใจว่าระบบอาคารจะปลอดภัย มีประสิทธิภาพ และใช้งานได้ยาวนาน"</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="tel:083-912-8999" class="btn" style="background:var(--white);color:var(--orange);font-weight:700;">📞 โทรหาเราเลย</a>
+      <a href="mailto:maxmep.th@gmail.com" class="btn btn-outline-white">✉️ ส่งอีเมล</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo-wrap" style="margin-bottom:12px;display:inline-flex;">
+        <svg width="36" height="36" viewBox="0 0 40 40" fill="none"><rect x="1" y="1" width="38" height="38" rx="4" stroke="#E8720C" stroke-width="2"/><path d="M8 30V10L20 22L32 10V30" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M20 22V30" stroke="#E8720C" stroke-width="3" stroke-linecap="round"/></svg>
+        <div class="logo-text-wrap"><span class="logo-main">MAX <span>MEP</span></span><span class="logo-sub">Engineering Solutions</span></div>
+      </a>
+      <p>บริษัท แม็ก เอ็มอีพี จำกัด ผู้เชี่ยวชาญด้านงานระบบวิศวกรรม M&E ครบวงจร และถังเก็บน้ำ GRP คุณภาพสูง</p>
+    </div>
+    <div class="footer-col"><h4>บริการ</h4><a href="service.html">ระบบดับเพลิง</a><a href="service.html">ระบบไฟฟ้า</a><a href="service.html">ระบบประปา</a><a href="service.html">ระบบ HVAC</a><a href="service.html">ถังเก็บน้ำ GRP</a></div>
+    <div class="footer-col"><h4>ข้อมูล</h4><a href="about-us.html">เกี่ยวกับเรา</a><a href="portfolio.html">ผลงานโครงการ</a><a href="contact.html">ติดต่อเรา</a></div>
+    <div class="footer-col">
+      <h4>ติดต่อ</h4>
+      <div class="footer-contact-item"><span class="icon">📍</span><p>2/88 อาคารบางนาคอมเพล็กซ์ ชั้น 17 ซอยบางนา-ตราด 25 เขตบางนา กทม. 10260</p></div>
+      <div class="footer-contact-item"><span class="icon">📞</span><p>083-912-8999 / 083-212-8999</p></div>
+      <div class="footer-contact-item"><span class="icon">✉️</span><p>maxmep.th@gmail.com</p></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><span>&copy; 2026 MAX MEP Co., Ltd.</span><span>www.maxmep.co.th</span></div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = '✓ ส่งข้อความเรียบร้อยแล้ว';
+  btn.style.background = '#2d7d46';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = 'ส่งข้อความ →';
+    btn.style.background = '';
+    btn.disabled = false;
+    e.target.reset();
+  }, 4000);
+}
+</script>
+</body>
+</html>
